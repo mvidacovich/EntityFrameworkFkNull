@@ -31,7 +31,11 @@ namespace EntityFrameworkFkNull
     {
         public TicketConfiguration()
         {
-            HasRequired(x => x.Owner);
+            HasRequired(x => x.Owner)
+                .WithMany()
+                .HasForeignKey(x=>x.OwnerId);
+            Property(x => x.OwnerId)
+                .HasColumnName("Owner_Id");
 
             HasOptional(x => x.LockedByUser)
                 .WithMany()
@@ -58,6 +62,7 @@ namespace EntityFrameworkFkNull
 
         public string Name { get; set; }
 
+        public int? OwnerId { get; set; }
         public virtual User Owner { get; set; }
 
         public int? LockedByUserId { get; set; }

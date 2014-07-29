@@ -27,6 +27,7 @@ namespace EntityFrameworkFkNull.Migrations
             {
                 Name = "Bar",
                 Owner = user,
+                OwnerId = user.Id
             });
         }
     }
